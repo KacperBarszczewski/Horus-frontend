@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  frontend-dev:
+    container_name: frontend-dev
+    build: .
+    ports:
+      - "4200:4200"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    tty: true
+    stdin_open: true
+    command: ng serve --host 0.0.0.0 --poll 500 --disable-host-check
+
+# docker compose up --build
+# docker compose exec frontend-dev bash
