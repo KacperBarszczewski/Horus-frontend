@@ -1,0 +1,16 @@
+
+<input
+  type="text"
+  [(ngModel)]="searchTerm"
+  (input)="onSearchChange()"
+  placeholder="Szukaj pracownika..."
+/>
+
+<select (change)="onSelect($event)">
+  <option value="" disabled selected>Wybierz pracownika</option>
+  <option *ngFor="let emp of filteredEmployees" [value]="emp.id">
+    {{ emp.firstName }} {{ emp.lastName }}
+  </option>
+</select>
+
+
