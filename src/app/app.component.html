@@ -1,2 +1,6 @@
 <div> Hello world!</div>
-<app-employee-select></app-employee-select>
+<app-employee-select (selectedEmployee)="onValueEmitted($event)"></app-employee-select>
+
+<div>
+    {{selectedEmployee?.id}} {{selectedEmployee?.firstName}} {{selectedEmployee?.lastName}}
+</div>

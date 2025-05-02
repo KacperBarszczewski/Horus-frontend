@@ -12,8 +12,9 @@ import { EmployeeService } from '../../services/employee.service';
   standalone: true
 })
 export class EmployeeSelectComponent implements OnInit {
-  @Output() selectedEmployeeID = new EventEmitter<string>();
+  @Output() selectedEmployee = new EventEmitter<Employee|null>();
 
+  selectEmployee: Employee | null = null;
   employees: Employee[] = [];
   filteredEmployees: Employee[] = [];
   searchTerm = '';
@@ -31,9 +32,8 @@ export class EmployeeSelectComponent implements OnInit {
     );
   }
 
-  onSelect(event: Event) {
-    const selectedEmployee = (event.target as HTMLSelectElement).value;
-    this.selectedEmployeeID.emit(selectedEmployee);
+  onSelect() {
+    this.selectedEmployee.emit(this.selectEmployee);
   }
 
 }

@@ -6,9 +6,9 @@
   placeholder="Szukaj pracownika..."
 />
 
-<select (change)="onSelect($event)">
+<select [(ngModel)]="selectEmployee" (change)="onSelect()">
   <option value="" disabled selected>Wybierz pracownika</option>
-  <option *ngFor="let emp of filteredEmployees" [value]="emp.id">
+  <option *ngFor="let emp of filteredEmployees" [ngValue]="emp">
     {{ emp.firstName }} {{ emp.lastName }}
   </option>
 </select>
