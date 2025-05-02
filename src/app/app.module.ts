@@ -8,11 +8,11 @@ import { EmployeeTreeComponent } from './components/employee-tree/employee-tree.
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeTreeComponent,
   ],
   imports: [
     BrowserModule,
-    EmployeeSelectComponent
+    EmployeeSelectComponent,
+    EmployeeTreeComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

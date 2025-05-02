@@ -1,6 +1,6 @@
 <div> Hello world!</div>
 <app-employee-select (selectedEmployee)="onValueEmitted($event)"></app-employee-select>
-
+<app-employee-tree [selectedEmployee]="selectedEmployee"></app-employee-tree>
 <div>
     {{selectedEmployee?.id}} {{selectedEmployee?.firstName}} {{selectedEmployee?.lastName}}
 </div>
