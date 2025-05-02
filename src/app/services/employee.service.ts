@@ -21,4 +21,26 @@ export class EmployeeService {
     return this.employeesStructureData;
   }
 
+  findEmployeeSubtree(
+    selectedEmployee: Employee,
+    currentNode: EmployeeNode = employeesStructureData,
+    path: EmployeeNode[] = []
+  ): EmployeeNode[] | null {
+
+    path.push(currentNode);
+    if (currentNode.id === selectedEmployee.id) {
+      return path;
+    }
+
+    for (const subordinate of currentNode.subordinates) {
+      const result = this.findEmployeeSubtree(selectedEmployee, subordinate, path);
+      if (result) {
+        return result;
+      }
+    }
+
+    path.pop();
+    return null;
+  }
+
 }
