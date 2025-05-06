@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+app-employee-select{
+    width: 50%;
+    margin-bottom: 10px;
+}
