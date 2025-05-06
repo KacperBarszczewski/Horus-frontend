@@ -1,0 +1,50 @@
+.tree-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box{
+    display: flex;
+    justify-content: right;
+}
+
+.arrow-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.emp-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    background-color: #f9f9f9;
+    padding: 0.625rem;
+    height: 3.125rem;
+    width: 12.5rem;
+    margin: 0.625rem;
+}
+
+.arrowUp-box{
+    display: none;
+}
+
+@media screen and (max-width: 450px) {
+
+    .arrow-box{
+        display: none;
+    }
+
+    .arrowUp-box{
+        display: block;
+    }
+
+    .box{
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}

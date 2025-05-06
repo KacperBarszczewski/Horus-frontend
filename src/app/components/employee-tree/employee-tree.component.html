@@ -1,1 +1,9 @@
-<p>employee-tree works!</p>
+<div class="tree-container">
+    <div class="box" *ngFor="let emp of employeeSubtree;let i=index">
+        <div class="arrow-box" *ngIf="i>0">&#8594;</div>
+        <div class="arrowUp-box" *ngIf="i>0">&#8593;</div>
+        <div class="emp-box">
+            {{emp.firstName}}
+        </div>
+    </div>
+</div>
