@@ -12,14 +12,15 @@ import { EmployeeService } from '../../services/employee.service';
   standalone: true
 })
 export class EmployeeSelectComponent implements OnInit {
-  @Output() selectedEmployee = new EventEmitter<Employee|null>();
+  @Output() selectedEmployee = new EventEmitter<Employee | null>();
 
-  selectEmployee: Employee | null = null;
   employees: Employee[] = [];
   filteredEmployees: Employee[] = [];
   searchTerm = '';
+  showDropdown = false;
+  activeIndex = -1;
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
     this.employees = this.employeeService.getEmployees();
@@ -30,10 +31,27 @@ export class EmployeeSelectComponent implements OnInit {
     this.filteredEmployees = this.employees.filter(employee =>
       `${employee.firstName} ${employee.lastName}`.toLocaleLowerCase().includes(this.searchTerm.toLocaleLowerCase())
     );
+    this.activeIndex = -1;
   }
 
-  onSelect() {
-    this.selectedEmployee.emit(this.selectEmployee);
+  select(employee: Employee) {
+    this.searchTerm = `${employee.firstName} ${employee.lastName}`;
+    this.showDropdown = false;
+    this.onSearchChange();
+    this.selectedEmployee.emit(employee);
+  }
+
+  onKeyDown(event: KeyboardEvent, input: HTMLInputElement) {
+    if (event.key === 'ArrowDown') {
+      this.activeIndex = Math.min(this.activeIndex + 1, this.filteredEmployees.length - 1);
+      event.preventDefault();
+    } else if (event.key === 'ArrowUp') {
+      this.activeIndex = Math.max(this.activeIndex - 1, 0);
+      event.preventDefault();
+    } else if (event.key === 'Enter' && this.activeIndex >= 0) {
+      this.select(this.filteredEmployees[this.activeIndex]);
+      input.blur();
+    }
   }
 
 }

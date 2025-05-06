@@ -1,16 +1,12 @@
+<div>
+  <input #searchInput type="text" [(ngModel)]="searchTerm" (input)="onSearchChange()" (focus)="showDropdown=true;"
+    (blur)="showDropdown=false;" (keydown)="onKeyDown($event,searchInput)" placeholder="Szukaj pracownika..." />
 
-<input
-  type="text"
-  [(ngModel)]="searchTerm"
-  (input)="onSearchChange()"
-  placeholder="Szukaj pracownika..."
-/>
+  <ul *ngIf="showDropdown && filteredEmployees.length">
+    <li *ngFor="let emp of filteredEmployees;let i = index" [class.active]="i === activeIndex"
+      (mousedown)="select(emp)">
+      {{ emp.firstName }} {{ emp.lastName }}
+    </li>
+  </ul>
 
-<select [(ngModel)]="selectEmployee" (change)="onSelect()">
-  <option value="" disabled selected>Wybierz pracownika</option>
-  <option *ngFor="let emp of filteredEmployees" [ngValue]="emp">
-    {{ emp.firstName }} {{ emp.lastName }}
-  </option>
-</select>
-
-
+</div>
